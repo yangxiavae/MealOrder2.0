@@ -1,0 +1,58 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    defaultConfig {
+        applicationId rootProject.ext.android.applicationId
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        //MultiDex分包方法
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation rootProject.ext.supportLib.appcompat_v7
+    implementation rootProject.ext.supportLib.constraint_layout
+    testImplementation rootProject.ext.supportLib.junit
+    androidTestImplementation rootProject.ext.supportLib.runner
+    androidTestImplementation rootProject.ext.supportLib.espresso
+    implementation rootProject.ext.retrofit.rxandroid
+    implementation rootProject.ext.retrofit.rxjava
+    implementation rootProject.ext.retrofit.retrofit2
+    implementation rootProject.ext.retrofit.adapter
+    implementation rootProject.ext.retrofit.fastJson
+//    implementation rootProject.ext.butterKnife.butterknife
+//    kapt rootProject.ext.butterKnife.butterknife_compiler
+    implementation rootProject.ext.refresh.SmartRefreshLayout
+    implementation rootProject.ext.refresh.SmartRefreshHeader
+    implementation rootProject.ext.dependencies.glide
+    implementation rootProject.ext.dependencies.base_recycleview
+    implementation rootProject.ext.dependencies.event_bus
+
+
+
+    implementation rootProject.ext.kotlin.kotlin_stdlib_jdk7
+    implementation rootProject.ext.kotlin.kotlin_stdlib
+    implementation rootProject.ext.kotlin.anko_sdk25
+    implementation rootProject.ext.kotlin.anko_common
+    implementation rootProject.ext.kotlin.anko_sdk25_coroutines
+    implementation rootProject.ext.kotlin.anko_appcompat_v7
+    implementation project(':baselib')
+}
+repositories {
+    mavenCentral()
+
+}
